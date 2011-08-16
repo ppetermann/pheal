@@ -82,7 +82,7 @@ class PhealFileCache implements PhealCacheInterface
             if(strlen($val) < 1)
                 unset($args[$key]);
             elseif($key != 'userid' && $key != 'apikey')
-                $argstr .= $key . $this->options['delimiter'] . $val . $this->options['delimiter'];
+                $argstr .= $key . $this->options['delimiter'] . md5($val) . $this->options['delimiter'];
         }
         $argstr = substr($argstr, 0, -1);
         $filename = "Request" . ($argstr ? "_" . $argstr : "") . ".xml";
