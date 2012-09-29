@@ -5,10 +5,6 @@ All rights reserved.
 
 Pheal is a port of EAAL to PHP
 
-## WARNING
-Pheal is not a stable release yet,
-stuff might or might not work as expected
-
 ## LICENSE
 Pheal is licensed under a MIT style license, see LICENSE.txt
 for further information
