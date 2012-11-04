@@ -273,7 +273,7 @@ class Pheal
             curl_setopt(self::$curl, CURLOPT_INTERFACE, $http_interface_ip);
 
         // ignore ssl peer verification if needed
-        if(substr($url,5) == "https")
+        if(substr($url,0,5) == "https")
             curl_setopt(self::$curl, CURLOPT_SSL_VERIFYPEER, PhealConfig::getInstance()->http_ssl_verifypeer);
             
         // http timeout 
