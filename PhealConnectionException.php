@@ -27,7 +27,7 @@
 /**
  * Pheal Connection Exception, where connection problems will be dumped into for easy identifying
  */
-class PhealConnectionException extends Exception
+class PhealConnectionException extends PhealException
 {
 
 }

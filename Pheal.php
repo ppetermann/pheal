@@ -230,7 +230,7 @@ class Pheal
                 throw $e;
             // just forward PhealConnectionException errors
             } catch(PhealConnectionException $e) {
-				throw $e;
+                throw $e;
             // other request errors
             } catch(Exception $e) {
                 // log + throw error
