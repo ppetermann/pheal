@@ -235,7 +235,7 @@ class Pheal
             } catch(Exception $e) {
                 // log + throw error
                 PhealConfig::getInstance()->log->errorLog($scope,$name,$http_opts,$e->getCode() . ': ' . $e->getMessage());
-				// change Exception to PhealException but keep the original error data (easier debugging in client application).
+                // change Exception to PhealException but keep the original error data (easier debugging in client application).
                 throw new PhealException('Original exception: ' . $e->getMessage(), $e->getCode(), $e);
             }
             PhealConfig::getInstance()->cache->save($this->userid,$this->key,$scope,$name,$opts,$this->xml);
