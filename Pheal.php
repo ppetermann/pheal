@@ -228,12 +228,15 @@ class Pheal
             // just forward HTTP Errors
             } catch(PhealHTTPException $e) {
                 throw $e;
-
+            // just forward PhealConnectionException errors
+            } catch(PhealConnectionException $e) {
+                throw $e;
             // other request errors
             } catch(Exception $e) {
                 // log + throw error
                 PhealConfig::getInstance()->log->errorLog($scope,$name,$http_opts,$e->getCode() . ': ' . $e->getMessage());
-                throw new PhealException('API Date could not be read / parsed, original exception: ' . $e->getMessage());
+                // change Exception to PhealException but keep the original error data (easier debugging in client application).
+                throw new PhealException('Original exception: ' . $e->getMessage(), $e->getCode(), $e);
             }
             PhealConfig::getInstance()->cache->save($this->userid,$this->key,$scope,$name,$opts,$this->xml);
             
@@ -336,7 +339,7 @@ class Pheal
 
         // curl errors
         if($errno)
-            throw new Exception($error, $errno);
+            throw new PhealConnectionException($error, $errno);
         else
             return $result;
     }
@@ -407,7 +410,7 @@ class Pheal
             // set track_errors back to the old value
             ini_set('track_errors',$oldTrackErrors);
 
-            throw new Exception($message);
+            throw new PhealConnectionException($message);
 
         // return result
         } else {
