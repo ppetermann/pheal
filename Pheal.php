@@ -223,8 +223,14 @@ class Pheal
                 PhealConfig::getInstance()->log->stop();
 
                 // parse
-                $element = new SimpleXMLElement($this->xml);
+                $element = @new SimpleXMLElement($this->xml);
 
+				if($element === false) {
+					foreach(libxml_get_errors() as $error) {
+						$msg .= "\t" . $error->message;
+					}
+					throw new PhealException('XML Parser Error: ' . $msg);
+				}
             // just forward HTTP Errors
             } catch(PhealHTTPException $e) {
                 throw $e;
