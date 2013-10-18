@@ -33,7 +33,7 @@ class Pheal
     /**
      * Version container
      */
-    public static $version = "0.1.8";
+    public static $version = "0.1.9";
 
     /**
      * resource handler for curl
@@ -334,8 +334,18 @@ class Pheal
             self::disconnect();
 
         // http errors
-        if($httpCode >= 400)
+        if($httpCode >= 400) {
+            switch($httpCode) {
+                case 400:
+                case 403:
+                case 500:
+                case 503: 
+                    return $result;
+                    break;
+                default:
+            }            
             throw new PhealHTTPException($httpCode, $url);
+        }
 
         // curl errors
         if($errno)
