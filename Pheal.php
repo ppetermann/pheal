@@ -33,7 +33,7 @@ class Pheal
     /**
      * Version container
      */
-    public static $version = "0.1.10";
+    public static $version = "0.1.11";
 
     /**
      * resource handler for curl
@@ -365,7 +365,9 @@ class Pheal
     public static function request_http_file($url,$opts)
     {
         $options = array();
-        
+        $options['http'] = array();
+        $options['http']['ignore_errors'] = true;
+
         // set custom user agent
         if(($http_user_agent = PhealConfig::getInstance()->http_user_agent) != false)
             $options['http']['user_agent'] = $http_user_agent;
@@ -408,11 +410,21 @@ class Pheal
         $httpCode = 200;
         if(isset($http_response_header[0]))
             list($httpVersion,$httpCode,$httpMsg) = explode(' ', $http_response_header[0], 3);
-        
-        // throw http error
-        if(is_numeric($httpCode) && $httpCode >= 400)
+       
+        // http errors
+        if(is_numeric($httpCode) && $httpCode >= 400) {
+            switch($httpCode) {
+                case 400:
+                case 403:
+                case 500:
+                case 503:
+                    return $result;
+                    break;
+                default:
+            }
             throw new PhealHTTPException($httpCode, $url);
-
+        }
+ 
         // throw error
         if($result === false) {
             $message = ($php_errormsg ? $php_errormsg : 'HTTP Request Failed');
