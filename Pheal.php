@@ -33,7 +33,7 @@ class Pheal
     /**
      * Version container
      */
-    public static $version = "0.1.13";
+    public static $version = "0.1.14";
 
     /**
      * resource handler for curl
@@ -248,7 +248,7 @@ class Pheal
                 PhealConfig::getInstance()->log->errorLog($scope,$name,$http_opts,$element->error['code'] . ': ' . $element->error);
             }
         } else {
-            $element = new SimpleXMLElement($this->xml);
+            @$element = new SimpleXMLElement($this->xml);
         }
         return new PhealResult($element);
     }
