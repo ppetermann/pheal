@@ -5,8 +5,10 @@ All rights reserved.
 
 Pheal is a port of EAAL to PHP
 
-## READ THIS FIRST
-if you are starting a new project, and you are running PHP 5.3 or larger you should consider using PhealNG instead. While PhealNG has most of the Features contained in Pheal, it has also been refactored to use PHP Namespaces and should be considered the current version of Pheal.
+## READ THIS FIRST - PHEAL IS DEPRECATED
+if you are starting a new project, and you are running PHP 5.3 or larger you should be using PhealNG instead. The only reason this still exists is to allow for some peoples legacy code to continue running. Pheal itself will NOT GET ANY MORE FIXES/UPDATES. USE PhealNG INSTEAD.
+
+YOU HAVE BEEN WARNED.
 
 https://github.com/3rdpartyeve/phealng
 
@@ -267,10 +269,6 @@ request if the API key isn't longer valid or the API Servers are down.
     } catch( ... ) { ... }
 
 
-## TODO
-- more documentation
-- more error handling
-
 ## LINKS
 - [Github](http://github.com/ppetermann/pheal)
 - [devedge](http://devedge.eu/project/pheal/)
@@ -280,9 +278,10 @@ request if the API key isn't longer valid or the API Servers are down.
 
 ## Contributors
 - Daniel Hoffend (Wollari)
-
+- and many more
+- 
 ## ACKNOWLEDGEMENTS
-- Pheal is based on [EAAL](http://github.com/ppetermann/eaal)
+- Pheal is based on [EAAL](http://github.com/3rdpartyeve/eaal)
 - Pheal is written in [PHP](http://php.net)
 - Pheal is build for use of the [EVE Online](http://eveonline.com) API
-
+- Pheal is superseded by [PhealNG](http://github.com/3rdpartyeve/phealng)
