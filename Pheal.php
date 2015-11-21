@@ -25,6 +25,8 @@
  OTHER DEALINGS IN THE SOFTWARE.
 */
 
+trigger_error("the Pheal library reached end of life years ago, update to PhealNG ffs.", E_USER_WARNING);
+
 /**
  * Pheal (PHp Eve Api Library), a EAAL Port for PHP
  */
